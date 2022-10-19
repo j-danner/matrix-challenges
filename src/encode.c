@@ -12,6 +12,7 @@
 //#define FIXDELTA
 //#define ATLEASTONE
 #define XOR
+#define XCNF
 
 //#define DIAGONAL
 
@@ -368,6 +369,13 @@ void printN1 (int* array, int size) {
 }
 
 int printXOR (int* array, int size, int var) {
+#ifdef XCNF
+  int i;
+  printf ("x ");
+  for(i = 0; i < size; i++) printf ("%i ", array[i]);
+  printf (" 0\n");
+  return var;
+#else
   if (size <  1) {
     printf ("0\n");
     return var; }
@@ -412,6 +420,7 @@ int printXOR (int* array, int size, int var) {
   for (i = 0; i < size - 3; i++) array[i] = array[i+3];
   array[size - 3] = var;
   return printXOR (array, size - 2, var + 1);
+#endif
 }
 
 int main (int argc, char** argv) {
